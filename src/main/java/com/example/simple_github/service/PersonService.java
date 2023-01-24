@@ -74,6 +74,10 @@ public class PersonService {
          personRepo.updatePersonProject(person2ProjectDto.getNewProjectId(), person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
     }
 
+    public void savePersonProject(Person2ProjectDto person2ProjectDto){
+         personRepo.savePersonProject( person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
+    }
+
 
     public Person converterDtoToEntity(PersonDto personDto) {
         List<Project> projects = new ArrayList<>();

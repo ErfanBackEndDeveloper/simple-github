@@ -38,11 +38,13 @@ public class PersonController {
     }
 
 
-    @PutMapping("/savePerson2Project")
+    @PostMapping("/savePerson2Project")
     public ResponseEntity<Person2ProjectDto> savePersonProject(@RequestBody Person2ProjectDto person2ProjectDto){
-        personService.updatePersonProject(person2ProjectDto);
+         personService.savePersonProject(person2ProjectDto);
         return ResponseEntity.ok().body(person2ProjectDto);
     }
+
+
 
 }
 
