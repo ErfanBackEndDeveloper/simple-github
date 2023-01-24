@@ -26,28 +26,26 @@ public class PersonController {
     }
 
     @PutMapping
-    public ResponseEntity<PersonDto> update(@RequestBody PersonDto personUpdateDto ){
+    public ResponseEntity<PersonDto> update(@RequestBody PersonDto personUpdateDto) {
         return ResponseEntity.ok().body(personService.updateByPersonId(personUpdateDto));
     }
 
 
     @PutMapping("/updatePerson2Project")
-    public ResponseEntity<Person2ProjectDto> updatePersonProject(@RequestBody Person2ProjectDto person2ProjectDto){
+    public ResponseEntity<Person2ProjectDto> updatePersonProject(@RequestBody Person2ProjectDto person2ProjectDto) {
         personService.updatePersonProject(person2ProjectDto);
         return ResponseEntity.ok().body(person2ProjectDto);
     }
 
 
     @PostMapping("/savePerson2Project")
-    public ResponseEntity<Person2ProjectDto> savePersonProject(@RequestBody Person2ProjectDto person2ProjectDto){
-         personService.savePersonProject(person2ProjectDto);
+    public ResponseEntity<Person2ProjectDto> savePersonProject(@RequestBody Person2ProjectDto person2ProjectDto) {
+        personService.savePersonProject(person2ProjectDto);
         return ResponseEntity.ok().body(person2ProjectDto);
     }
 
 
-
 }
-
 
 
 // "projects":[{

@@ -25,11 +25,7 @@ public class ProjectService {
         if (projectDto.getDescription() != null) {
             project.setDescription(projectDto.getDescription());
         }
-//        if (projectDto.getPerson() != null) {
-//            project.setPerson(projectDto.getPerson());
-//        }
 
-//        projectRepo.updateByProjectId(project.getTitle(), project.getDescription(), project.getPerson(), project.getId());
         projectRepo.updateByProjectId(project.getTitle(), project.getDescription(), project.getId());
 
         return convertEntityToDto(projectRepo.findById(projectDto.getId()).orElseThrow(RuntimeException::new));
@@ -42,7 +38,6 @@ public class ProjectService {
         projectDto.setDescription(project.getDescription());
         projectDto.setTitle(project.getTitle());
         projectDto.setId(project.getId());
-//        projectDto.setPerson(project.getPerson());
         return projectDto;
     }
 
@@ -51,7 +46,6 @@ public class ProjectService {
         project.setDescription(projectDto.getDescription());
         project.setTitle(projectDto.getTitle());
         project.setId(projectDto.getId());
-//        project.setPerson(projectDto.getPerson());
         return project;
     }
 }

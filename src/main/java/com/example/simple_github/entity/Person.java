@@ -23,7 +23,6 @@ public class Person {
 
     private Date registerDate;
 
-//        @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "person_project",
             joinColumns = {@JoinColumn(name = "person_ID")},

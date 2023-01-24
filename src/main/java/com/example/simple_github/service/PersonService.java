@@ -6,7 +6,6 @@ import com.example.simple_github.dto.ProjectDtoForPerson;
 import com.example.simple_github.entity.Person;
 import com.example.simple_github.entity.Project;
 import com.example.simple_github.repository.PersonRepo;
-import com.example.simple_github.repository.ProjectRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,8 +20,6 @@ public class PersonService {
     @Autowired
     private PersonRepo personRepo;
 
-    @Autowired
-    private ProjectRepo projectRepo;
 
     public PersonDto save(PersonDto personDto) {
         Person save = personRepo.save(converterDtoToEntity(personDto));
@@ -39,8 +36,6 @@ public class PersonService {
     public PersonDto updateByPersonId(PersonDto personDto) {
         Person person = personRepo.findById(personDto.getId()).orElseThrow(RuntimeException::new);
 
-//        List<Project> personsProject = new ArrayList<>(person.getProjects());
-
         if (personDto.getFirstName() != null) {
             person.setFirstName(personDto.getFirstName());
         }
@@ -51,31 +46,17 @@ public class PersonService {
             person.setRegisterDate(personDto.getRegisterDate());
         }
 
-//        if (personUpdateDto.getProjects() != null) {
-//
-//            //for delete all project
-//            if (personUpdateDto.getProjects().get(0) == 0) {
-//                person.setProjects(null);
-//            }
-//
-//            for (Long p : personUpdateDto.getProjects()) {
-//                Project project = projectRepo.findById(p).orElseGet(Project::new);
-//                personsProject.add(project);
-//            }
-//            person.setProjects(personsProject);
-//        }
-
         personRepo.updateByPersonId(person.getFirstName(), person.getLastName(), person.getRegisterDate(), person.getId());
         return null;
     }
 
 
     public void updatePersonProject(Person2ProjectDto person2ProjectDto) {
-         personRepo.updatePersonProject(person2ProjectDto.getNewProjectId(), person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
+        personRepo.updatePersonProject(person2ProjectDto.getNewProjectId(), person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
     }
 
-    public void savePersonProject(Person2ProjectDto person2ProjectDto){
-         personRepo.savePersonProject( person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
+    public void savePersonProject(Person2ProjectDto person2ProjectDto) {
+        personRepo.savePersonProject(person2ProjectDto.getPersonId(), person2ProjectDto.getProjectId());
     }
 
 
